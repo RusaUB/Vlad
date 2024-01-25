@@ -99,11 +99,11 @@ def move_back():
     pwm[left_top_wheel['back']].ChangeDutyCycle(50)
     pwm[left_bottom_wheel['back']].ChangeDutyCycle(50)
 
-def diagonal_up_right_move():
+def diagonal_up_left_move():
     pwm[right_bottom_wheel['back']].ChangeDutyCycle(50)
     pwm[left_top_wheel['forward']].ChangeDutyCycle(50)
 
-def right_move():
+def left_move():
     pwm[right_top_wheel['back']].ChangeDutyCycle(50)
     pwm[right_bottom_wheel['forward']].ChangeDutyCycle(50)
     pwm[left_top_wheel['forward']].ChangeDutyCycle(50)
@@ -113,19 +113,31 @@ def diagonal_bottom_right_move():
     pwm[right_top_wheel['back']].ChangeDutyCycle(50)
     pwm[left_bottom_wheel['back']].ChangeDutyCycle(50)    
     
-def left_move():
+def right_move():
     pwm[right_top_wheel['forward']].ChangeDutyCycle(50)
     pwm[right_bottom_wheel['back']].ChangeDutyCycle(50)
     pwm[left_top_wheel['back']].ChangeDutyCycle(50)
     pwm[left_bottom_wheel['forward']].ChangeDutyCycle(50)
 
-def diagonal_up_left_move():
+def diagonal_up_right_move():
     pwm[right_top_wheel['forward']].ChangeDutyCycle(50)
     pwm[left_bottom_wheel['forward']].ChangeDutyCycle(50)
 
 def diagonal_bottom_left_move():
     pwm[right_bottom_wheel['back']].ChangeDutyCycle(50)
     pwm[left_top_wheel['back']].ChangeDutyCycle(50)
+
+def rotate_right():
+    pwm[right_bottom_wheel['forward']].ChangeDutyCycle(50)
+    pwm[right_top_wheel['forward']].ChangeDutyCycle(50)
+    pwm[left_top_wheel['back']].ChangeDutyCycle(50)
+    pwm[left_bottom_wheel['back']].ChangeDutyCycle(50)
+
+def rotate_left():
+    pwm[right_bottom_wheel['back']].ChangeDutyCycle(50)
+    pwm[right_top_wheel['back']].ChangeDutyCycle(50)
+    pwm[left_top_wheel['forward']].ChangeDutyCycle(50)
+    pwm[left_bottom_wheel['forward']].ChangeDutyCycle(50)
 
 def stop_motors():
     for motor in pwm.values():
@@ -150,6 +162,10 @@ def execute_command(command):
         diagonal_bottom_left_move()
     elif command == 'c':
         diagonal_bottom_right_move()
+    elif command == 'o':
+        rotate_left()
+    elif command == 'p':
+        rotate_right()
     elif command == 'm':
         rotate_servo()
     elif command == 'x':
